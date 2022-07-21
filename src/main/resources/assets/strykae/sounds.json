@@ -1,0 +1,57 @@
+{
+  "entity.isaion.ambient":
+  {
+    "subtitle": "subtitle.isaion.ambient",
+    "sounds": [{"name": "strykae:entity/isaion/ambient", "stream": true}]
+  },
+  "entity.isaion.death":
+  {
+    "subtitle": "subtitle.isaion.death",
+    "sounds": [{"name": "strykae:entity/isaion/death", "stream": true}]
+  },
+  "entity.isaion.scream":
+  {
+    "subtitle": "subtitle.isaion.scream",
+    "sounds": [{"name": "strykae:entity/isaion/scream", "stream": true}]
+  },
+  "entity.player.spellcast":
+  {
+    "subtitle": "subtitle.player.spellcast",
+    "sounds": [{"name": "strykae:entity/player/spellcast", "stream": true}]
+  },
+  "entity.gureon.ambient":
+  {
+    "subtitle": "subtitle.gureon.ambient",
+    "sounds": [{"name": "strykae:entity/gureon/ambient", "stream": true}]
+  },
+  "entity.gureon.hurt":
+  {
+    "subtitle": "subtitle.gureon.hurt",
+    "sounds": [{"name": "strykae:entity/gureon/hurt", "stream": true}]
+  },
+  "entity.gureon.death":
+  {
+    "subtitle": "subtitle.gureon.death",
+    "sounds": [{"name": "strykae:entity/gureon/death", "stream": true}]
+  },
+  "entity.kaneon.attack":
+  {
+    "subtitle": "subtitle.kaneon.attack",
+    "sounds": [{"name": "strykae:entity/kaneon/attack", "stream": true}]
+  },
+  "entity.kaneon.hurt":
+  {
+    "subtitle": "subtitle.kaneon.hurt",
+    "sounds": [{"name": "strykae:entity/kaneon/hurt", "stream": true}]
+  },
+  "entity.kaneon.death":
+  {
+    "subtitle": "subtitle.kaneon.death",
+    "sounds": [{"name": "strykae:entity/kaneon/death", "stream": true}]
+  },
+  "block.sigil_table.craft":
+  {
+    "subtitle": "subtitle.sigil_table.craft",
+    "sounds": [{"name": "strykae:block/sigil_table/craft", "stream": true}]
+  }
+}

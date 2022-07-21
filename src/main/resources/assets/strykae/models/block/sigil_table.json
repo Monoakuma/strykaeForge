@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "strykae:blocks/sigil_table"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LEL",
+    "EAE",
+    "LEL"
+  ],
+  "key":
+  {
+    "L":
+    {
+      "item": "minecraft:lapis_block"
+    },
+    "E":
+    {
+      "item": "minecraft:emerald"
+    },
+    "A":
+    {
+      "item": "minecraft:anvil",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "strykae:sigil_table"
+  }
+}

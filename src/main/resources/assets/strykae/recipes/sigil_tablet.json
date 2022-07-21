@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#X#",
+    "#X#"
+  ],
+  "key":
+  {
+    "#":
+    {
+      "item": "minecraft:hardened_clay"
+    },
+    "X":
+    {
+      "item": "minecraft:end_bricks"
+    }
+  },
+  "result": {
+    "item": "strykae:sigil_tablet"
+  }
+}

@@ -1,0 +1,16 @@
+[
+    {
+        "modid": "strykae",
+        "name": "Strykae",
+        "description": "A mod to implement the Strykae Cycle from my story into Minecraft. For more information please refer to github page.",
+        "version": "1.0-BETA",
+        "mcversion": "1.12.2",
+        "url": "https://github.com/Monoakuma/strykae",
+        "updateUrl": "",
+        "authorList": ["Monoakuma"],
+        "credits": "Many thanks to the inconceivable darkness of humanity for inspiration",
+        "logoFile": "assets/strykae/logo.png",
+        "screenshots": [],
+        "dependencies": []
+    }
+]

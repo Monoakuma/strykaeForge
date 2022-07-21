@@ -1,0 +1,13 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "strykae:items/kris0"
+  },
+  "overrides": [
+    { "predicate": { "playerdistance": 0.000000 }, "model": "strykae:item/kris0" },
+    { "predicate": { "playerdistance": 10000.00 }, "model": "strykae:item/kris1" },
+    { "predicate": { "playerdistance": 1000.000 }, "model": "strykae:item/kris2" },
+    { "predicate": { "playerdistance": 100.0000 }, "model": "strykae:item/kris3" },
+    { "predicate": { "playerdistance": 1.00000 }, "model": "strykae:item/kris4" }
+  ]
+}
