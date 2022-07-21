@@ -9,7 +9,6 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import java.util.Objects;
 import java.util.Random;
-import java.util.UUID;
 
 public class EntityMaskon extends AbstractFamiliar {
     private int limit=0;
@@ -89,11 +88,12 @@ public class EntityMaskon extends AbstractFamiliar {
         }
         public void castSpell(){
             EntityMaskon kin = new EntityMaskon(maskon.getEntityWorld());
-            kin.setLimit(limit-1);
-            int expiration = (!this.maskon.expires) ? 600 : this.maskon.getExpiration();
+            kin.setLimit(this.maskon.getLimit()-1);
+            int expiration = (!this.maskon.expires) ? 100 : this.maskon.getExpiration();
             kin.setExpiration(expiration);
+            kin.setHostile(this.maskon.getHostile());
             kin.setPosition(maskon.posX,maskon.posY,maskon.posZ);
-            if (getOwner() instanceof EntityPlayer) kin.setOwner((EntityPlayer) Objects.requireNonNull(getOwner()));
+            if (this.maskon.getOwner() instanceof EntityPlayer) kin.setOwner((EntityPlayer) Objects.requireNonNull(this.maskon.getOwner()));
             kin.setAttackTarget(maskon.getAttackTarget());
             maskon.getEntityWorld().spawnEntity(kin);
             isSummoning=false;

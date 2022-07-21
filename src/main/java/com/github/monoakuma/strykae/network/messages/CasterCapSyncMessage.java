@@ -1,23 +1,24 @@
 package com.github.monoakuma.strykae.network.messages;
 
-import com.github.monoakuma.strykae.core.CasterCap;
 import com.github.monoakuma.strykae.core.ICasterCap;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IThreadListener;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
+import static com.github.monoakuma.strykae.Strykae.LOGGER;
 import static com.github.monoakuma.strykae.core.CasterCap.CDATA_CAPABILITY;
 import static com.github.monoakuma.strykae.core.CasterCap.getCaster;
 
-public class CasterCapSyncMessage implements IMessage,IMessageHandler<CasterCapSyncMessage,IMessage> {
+public class CasterCapSyncMessage implements IMessage {
     public String identifier;
     public NBTTagCompound data;
 
@@ -43,19 +44,21 @@ public class CasterCapSyncMessage implements IMessage,IMessageHandler<CasterCapS
         ByteBufUtils.writeTag(buf, this.data);
     }
     //handler
-    @Override
-    public IMessage onMessage(CasterCapSyncMessage message, MessageContext ctx) {
-        EntityPlayerSP player = Minecraft.getMinecraft().player;
-        if (player != null) {
-            Minecraft.getMinecraft().addScheduledTask(() -> {
+    public static class Handler implements IMessageHandler<CasterCapSyncMessage,IMessage> {
+        @Override
+        public IMessage onMessage(CasterCapSyncMessage message, MessageContext ctx) {
+            IThreadListener mainThread = Minecraft.getMinecraft();
+            EntityPlayer player = Minecraft.getMinecraft().player;
+            mainThread.addScheduledTask(() -> {
                 ICasterCap found = getCaster(player);
                 NBTTagList list = new NBTTagList();
                 list.appendTag(message.data);
                 CDATA_CAPABILITY.getStorage().readNBT(CDATA_CAPABILITY, found, null, list);
             });
-        }
 
-        return null;
+            return null;
+        }
     }
+
 
 }

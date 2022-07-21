@@ -151,7 +151,7 @@ public class EventHandler {
                     if (event.player.world.isRainingAt(new BlockPos(event.player))) event.player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("invisibility"),120,0,false,false));
                 }
             }
-            if (event.side==Side.SERVER) casterCap.syncPlayerCData(event.player);
+            casterCap.syncPlayerCData(event.player);
         }
     }
     @SubscribeEvent

@@ -3,6 +3,8 @@ package com.github.monoakuma.strykae.client;
 import com.github.monoakuma.strykae.common.CommonProxy;
 import static com.github.monoakuma.strykae.Strykae.MOD_ID;
 import static com.github.monoakuma.strykae.init.ItemInit.ITEMS;
+
+import com.github.monoakuma.strykae.init.EntityRenderInit;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -35,6 +37,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
+        EntityRenderInit.createRenders();
     }
 
 }

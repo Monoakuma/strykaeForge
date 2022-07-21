@@ -19,8 +19,6 @@ import javax.annotation.Nullable;
 
 import java.util.Objects;
 
-import static com.github.monoakuma.strykae.Strykae.LOGGER;
-
 public class CasterCap  {
     @CapabilityInject(ICasterCap.class)
     public static final Capability<ICasterCap> CDATA_CAPABILITY = null;
@@ -72,7 +70,6 @@ public class CasterCap  {
         @Override
         public void readNBT(Capability<ICasterCap> capability, ICasterCap casterCap, EnumFacing side, NBTBase casterData) {
             NBTTagList list = (NBTTagList) casterData;
-            LOGGER.info(casterData);
             if (list==null) {
                 casterCap.setMana(0);
                 casterCap.setLives(0);
@@ -87,7 +84,6 @@ public class CasterCap  {
                     casterCap.setLives(casterDataCompound.getInteger("Lives"));
                     casterCap.setHygiene(casterDataCompound.getInteger("Hygiene"));
                     casterCap.setIsHuman(casterDataCompound.getBoolean("Is_Human"));
-                    LOGGER.info("POST:MANA: "+casterDataCompound.getInteger("Mana")+" | LIVES: "+casterDataCompound.getInteger("Lives")+" | HUMAN: "+casterDataCompound.getBoolean("Is_Human"));
                 }
             }
 
@@ -100,21 +96,19 @@ public class CasterCap  {
         private boolean isHuman;
         private int hygiene; //more negative means poor hygiene, below -12 is infection. lowered by eating rotten flesh and raw meat, raised by eating stew and soup. Caps at -30 and 30
         public CasterImp(int mana, int lives, boolean isHuman, int hygiene) {
-            LOGGER.info("I AM CASTER");
             this.mana=mana;
             this.lives=lives;
             this.isHuman=isHuman;
             this.hygiene=hygiene;
         }
         public CasterImp() {
-            LOGGER.info("I AM");
             this.mana=0;
             this.lives=0;
             this.isHuman=true;
             this.hygiene=0;
         }
         public void syncPlayerCData(EntityPlayer player) {
-            if (player instanceof EntityPlayerMP) {
+            if (player instanceof EntityPlayerMP && !player.world.isRemote) {
                 ICasterCap casterCap = getCaster(player);
                 NBTTagCompound data = ((NBTTagList) Objects.requireNonNull(CDATA_CAPABILITY.getStorage().writeNBT(CDATA_CAPABILITY, casterCap, null))).getCompoundTagAt(0);
                 Strykae.network.sendTo(new CasterCapSyncMessage(CDATA_CAPABILITY.getName(),data),(EntityPlayerMP) player);

@@ -12,7 +12,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static com.github.monoakuma.strykae.Strykae.MOD_ID;
-@SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(modid = MOD_ID)
 public class SoundInit {
     public static final Set<SoundEvent> SOUNDS = new HashSet<>();

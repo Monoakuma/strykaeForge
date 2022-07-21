@@ -4,11 +4,9 @@ import com.github.monoakuma.strykae.Strykae;
 import com.github.monoakuma.strykae.core.CasterCap;
 import com.github.monoakuma.strykae.core.ICasterCap;
 import com.github.monoakuma.strykae.network.messages.CasterCapSyncMessage;
-import com.google.common.util.concurrent.ListenableFuture;
+import com.github.monoakuma.strykae.network.messages.ShowSigilGUIMessage;
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.RegistryEvent;
@@ -18,7 +16,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.registries.IForgeRegistry;
 
 import static com.github.monoakuma.strykae.Strykae.MOD_ID;
 
@@ -29,7 +26,9 @@ public class CommonProxy
     public void render() {}
     public void preInit(FMLPreInitializationEvent e) {
         Strykae.network = NetworkRegistry.INSTANCE.newSimpleChannel(MOD_ID);
-        Strykae.network.registerMessage(CasterCapSyncMessage.class,CasterCapSyncMessage.class,0, Side.CLIENT);
+        Strykae.network.registerMessage(CasterCapSyncMessage.Handler.class,CasterCapSyncMessage.class,0, Side.CLIENT);
+        Strykae.network.registerMessage(ShowSigilGUIMessage.Handler.class,ShowSigilGUIMessage.class,1, Side.CLIENT);
+        //a server side-event to inscribe Sigils from Sigil Tablet GUI
     }
 
     public static void init() {

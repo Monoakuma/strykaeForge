@@ -58,8 +58,6 @@ public class Strykae {
         proxy.preInit(event);
         LOGGER.info("LOADING 2");
         EntityInit.registerEntities();
-        EntityRenderInit.createRenders();
-
     }
 
     /**

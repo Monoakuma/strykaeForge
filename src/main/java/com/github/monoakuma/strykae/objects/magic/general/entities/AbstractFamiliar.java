@@ -1,6 +1,5 @@
 package com.github.monoakuma.strykae.objects.magic.general.entities;
 
-import com.github.monoakuma.strykae.Strykae;
 import com.github.monoakuma.strykae.core.StrykaeCore;
 import com.github.monoakuma.strykae.objects.items.HeartItem;
 import com.github.monoakuma.strykae.objects.magic.IFamiliar;
@@ -202,6 +201,14 @@ public class AbstractFamiliar extends EntityTameable implements IFamiliar {
     public int getExpiration() {
         return this.expiration;
     }
+    public void setHostile(boolean hostile) {
+        this.HOSTILE=hostile;
+    }
+
+    public boolean getHostile() {
+        return this.HOSTILE;
+    }
+
     public static class EntityAIFamiliarHurtByTarget extends EntityAITarget {
         private final boolean entityCallsForHelp;
         private int revengeTimerOld;
