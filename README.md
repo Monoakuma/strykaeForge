@@ -3,7 +3,7 @@ This repository is a recreation the Strykae Cycle from my own writings. Specific
 I intend to make as many features as possible editable with the config.
 
 ## Magic
-Galdic and Sahvic magic relies on the player to find Sigils by exploring. Sigils can be combined into a Spell Word using a Writing Desk.
+Galdic and Sahvic magic relies on the player to find Sigils by exploring. Sigils can be combined into a Spell Word using a Sigil Table.
 A Spell Word is comprised of the following:
 * Exaggeration Sigils which increase the power and cost of the spell, if Multiple Exaggeration Sigils are added to the same Spell Word, their costs and power multiply.
 * Focus Sigils which determine the exact effect that you are causing, This is the heart of the spell, it is the Fire in Fireball.
