@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 import java.util.UUID;
 
+import static com.github.monoakuma.strykae.Strykae.LOGGER;
 import static com.github.monoakuma.strykae.Strykae.spellHandler;
 
 public class SigilCarveMessage implements IMessage {
@@ -40,10 +41,13 @@ public class SigilCarveMessage implements IMessage {
     public static class Handler implements IMessageHandler<SigilCarveMessage,IMessage> {
         @Override
         public IMessage onMessage(SigilCarveMessage message, MessageContext ctx) {
+            LOGGER.info("carving");
             FMLCommonHandler.instance().getMinecraftServerInstance().addScheduledTask(() -> {
+                LOGGER.info("running with tablet:"+message.tablet.getDisplayName());
                 ItemStack tablet = message.tablet;
                 if (!tablet.isEmpty()) {
                     spellHandler.assignSpellNBT(tablet, message.spelltext);
+                    LOGGER.info("carved");
                 }
             });
 

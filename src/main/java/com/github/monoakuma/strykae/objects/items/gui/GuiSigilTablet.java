@@ -83,7 +83,7 @@ public class GuiSigilTablet extends GuiScreen {
     protected void actionPerformed(@Nonnull GuiButton button) throws IOException {
         super.actionPerformed(button);
         if (button.id==5) {
-            //spellHandler.assignSpellNBT(this.tablet,String.format("%d%d%d ",(exag1.getIndex()+1),(exag2.getIndex()+1),(exag3.getIndex()+1)) + focus.displayString + specifier.displayString);
+            spellHandler.assignSpellNBT(this.tablet,String.format("%d%d%d ",(exag1.getIndex()+1),(exag2.getIndex()+1),(exag3.getIndex()+1)) + focus.displayString + specifier.displayString);
             Strykae.network.sendToServer(new SigilCarveMessage(this.tablet,String.format("%d%d%d ",(exag1.getIndex()+1),(exag2.getIndex()+1),(exag3.getIndex()+1)) + focus.displayString + specifier.displayString));
             button.enabled=false;
             this.mc.displayGuiScreen((GuiScreen)null);

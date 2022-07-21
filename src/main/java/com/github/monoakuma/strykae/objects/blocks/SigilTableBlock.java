@@ -197,7 +197,6 @@ public class SigilTableBlock extends Block {
             if (inventory==this.input) {
                 ItemStack sigil = this.input.getStackInSlot(0);
                 ItemStack tool = this.input.getStackInSlot(1);
-                LOGGER.info(sigil.getDisplayName()+" | "+tool.getDisplayName());
                 if (!sigil.isEmpty()&&!tool.isEmpty()) {
                     ItemStack spelltool = ItemStack.EMPTY;
                     if (sigil.hasTagCompound()) {
