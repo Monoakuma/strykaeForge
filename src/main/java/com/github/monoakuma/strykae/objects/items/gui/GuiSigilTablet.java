@@ -1,5 +1,7 @@
 package com.github.monoakuma.strykae.objects.items.gui;
 
+import com.github.monoakuma.strykae.Strykae;
+import com.github.monoakuma.strykae.network.messages.SigilCarveMessage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -81,13 +83,10 @@ public class GuiSigilTablet extends GuiScreen {
     protected void actionPerformed(@Nonnull GuiButton button) throws IOException {
         super.actionPerformed(button);
         if (button.id==5) {
-            spellHandler.assignSpellNBT(this.tablet,String.format("%d%d%d ",(exag1.getIndex()+1),(exag2.getIndex()+1),(exag3.getIndex()+1)) + focus.displayString + specifier.displayString);
+            //spellHandler.assignSpellNBT(this.tablet,String.format("%d%d%d ",(exag1.getIndex()+1),(exag2.getIndex()+1),(exag3.getIndex()+1)) + focus.displayString + specifier.displayString);
+            Strykae.network.sendToServer(new SigilCarveMessage(this.tablet,String.format("%d%d%d ",(exag1.getIndex()+1),(exag2.getIndex()+1),(exag3.getIndex()+1)) + focus.displayString + specifier.displayString));
             button.enabled=false;
             this.mc.displayGuiScreen((GuiScreen)null);
-            //PacketBuffer packetbuffer = new PacketBuffer(Unpooled.buffer());
-            //packetbuffer.writeItemStack(this.tablet);
-            //this.mc.getConnection().sendPacket(new CPacketCustomPayload("strykae", packetbuffer));
-            //Strykae.network.sendTo(new SigilCraftMessage(String.format("%d%d%d ",(exag1.getIndex()+1),(exag2.getIndex()+1),(exag3.getIndex()+1)) + focus.displayString + specifier.displayString),(EntityPlayerMP) this.carver);
         }
     }
 

@@ -39,10 +39,9 @@ public class SigilItem extends Item {
 
     @Nonnull
     @Override
-    @SideOnly(Side.CLIENT)
     public ActionResult<ItemStack> onItemRightClick(@Nonnull World world, @Nonnull EntityPlayer player, @Nonnull EnumHand hand) {
         ItemStack stack = player.getHeldItemMainhand();
-        if (hand.equals(EnumHand.MAIN_HAND)&&!stack.hasTagCompound()) {
+        if (hand.equals(EnumHand.MAIN_HAND)&&!stack.hasTagCompound() && player instanceof EntityPlayerMP) {
             Strykae.network.sendTo(new ShowSigilGUIMessage(),(EntityPlayerMP) player);
         }
         return super.onItemRightClick(world, player, hand);
