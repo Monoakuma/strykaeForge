@@ -3,10 +3,15 @@ package com.github.monoakuma.strykae.objects.magic.sahvic.familiars;
 import com.github.monoakuma.strykae.objects.magic.general.entities.AbstractFamiliar;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.monster.EntityEvoker;
+import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import java.util.Objects;
 import java.util.Random;
 
@@ -55,8 +60,9 @@ public class EntityMaskon extends AbstractFamiliar {
         else if (!expires) {
             limit=1; //really hope this isn't too powerful.
         }
-
     }
+
+
     public class AIEntityMaskonSummon extends EntityAIBase {
         protected int warmup=0;
         protected EntityMaskon maskon;
@@ -74,12 +80,10 @@ public class EntityMaskon extends AbstractFamiliar {
 
         public void updateTask() {
             ++this.warmup;
-            spawnParticles(EnumParticleTypes.SPELL_WITCH);
             if (this.warmup >= 40) {
                 this.castSpell();
                 maskon.playSound(SoundEvents.ENTITY_ZOMBIE_INFECT, 1.0F, 1.0F);
             }
-
         }
 
         @Override
@@ -101,4 +105,6 @@ public class EntityMaskon extends AbstractFamiliar {
             maskon.limit--;
         }
     }
+
+
 }

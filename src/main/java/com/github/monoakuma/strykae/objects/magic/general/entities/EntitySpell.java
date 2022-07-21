@@ -38,15 +38,11 @@ public class EntitySpell extends AbstractSpell {
     }
     @Override
     protected void onHit(@Nonnull RayTraceResult rayTraceResult) {
-        Strykae.LOGGER.info("PSpell Impact");
         if (!this.world.isRemote && this.caster != null) { //if caster is not null, then we have already set up a SpellProfile.
-            Strykae.LOGGER.info("PSpell Profiled");
             if (spellHandler.findWorldSpell(spell.getName())!=spellHandler.nullSpell) {
-                Strykae.LOGGER.info("Found World PSpell");
                 spellHandler.castWorld(this.cost,this.spell,getHitTargets(),this.caster,this.casterCap,this.getPosition());
             }
             else if (spell instanceof PotionSpell) {
-                Strykae.LOGGER.info("PSpell Is "+spell.getName()+":"+((PotionSpell)spell).getEffect().getName());
                 spellHandler.castPotion(this.cost, (PotionSpell) this.spell,getHitTargets(),this.caster,this.casterCap);
                 EntityAreaEffectCloud zone = new EntityAreaEffectCloud(this.world);
                 zone.addEffect(new PotionEffect(((PotionSpell)spell).getEffect(),Math.max((cost-spell.getCost()*spell.getCost()/9)*spellpower*10,10),Math.min(spellpower,2),false,false));

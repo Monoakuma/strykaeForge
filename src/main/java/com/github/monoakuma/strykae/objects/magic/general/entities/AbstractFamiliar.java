@@ -158,32 +158,6 @@ public class AbstractFamiliar extends EntityTameable implements IFamiliar {
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
     }
-    /*
-    @Override
-    public void onUpdate() {
-        super.onUpdate();
-        if (this.expiration>0 && expires) this.expiration--;
-        if (--this.expiration<=0 && expires ) {
-            if (this.isBeingRidden()&&this instanceof EntityAlbtraum) Objects.requireNonNull(this.getControllingPassenger()).dismountRidingEntity();
-            this.attackEntityFrom(DamageSource.GENERIC,this.getMaxHealth());
-            this.noClip=true;
-            spawnParticles(EnumParticleTypes.SPELL_WITCH);
-        }
-    }
-
-
-    @Override
-    public void onLivingUpdate() {
-        super.onLivingUpdate();
-        if (expires) this.expiration--;
-        if (--this.expiration<=0 && expires && !world.isRemote) {
-            Strykae.LOGGER.info("bastard should be dying right now:"+this.expiration);
-            if (this.isBeingRidden()&&this instanceof EntityAlbtraum) {Objects.requireNonNull(this.getControllingPassenger()).dismountRidingEntity();}
-            Strykae.LOGGER.info(this.attackEntityFrom(DamageSource.GENERIC,this.getMaxHealth()));
-            spawnParticles(EnumParticleTypes.SPELL_WITCH);
-        }
-    }
-    */
     @SideOnly(Side.CLIENT)
     protected void spawnParticles(EnumParticleTypes particle) {
         for(int i = 0; i < 5; ++i) {

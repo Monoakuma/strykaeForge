@@ -3,6 +3,7 @@ package com.github.monoakuma.strykae.network.messages;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -41,13 +42,10 @@ public class SigilCarveMessage implements IMessage {
     public static class Handler implements IMessageHandler<SigilCarveMessage,IMessage> {
         @Override
         public IMessage onMessage(SigilCarveMessage message, MessageContext ctx) {
-            LOGGER.info("carving");
-            FMLCommonHandler.instance().getMinecraftServerInstance().addScheduledTask(() -> {
-                LOGGER.info("running with tablet:"+message.tablet.getDisplayName());
+            ((WorldServer)ctx.getServerHandler().player.world).addScheduledTask(() -> {
                 ItemStack tablet = message.tablet;
                 if (!tablet.isEmpty()) {
                     spellHandler.assignSpellNBT(tablet, message.spelltext);
-                    LOGGER.info("carved");
                 }
             });
 

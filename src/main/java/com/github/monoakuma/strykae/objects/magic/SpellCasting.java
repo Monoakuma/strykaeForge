@@ -368,7 +368,7 @@ public class SpellCasting {
                 for (EntityLivingBase target : targets) {
                     world.createExplosion(new EntityLightningBolt(world,target.posX,target.posY,target.posZ,true),target.posX,target.posY,target.posZ,(float)Math.min((getSpellPower(casterCap,world))/spread/(price/2),3),true);
                 }
-                if (targets.isEmpty()&&blockPos!=null) world.createExplosion(new EntityLightningBolt(world, pos.x, pos.y, pos.z,true),pos.x, pos.y, pos.z,(float)Math.min((getSpellPower(casterCap,world))/spread/(price/2),3),true);
+                if (targets.isEmpty()&&blockPos!=null) world.createExplosion(new EntityLightningBolt(world, pos.x, pos.y, pos.z,true),pos.x, pos.y, pos.z,(float)Math.min((getSpellPower(casterCap,world))/(price/2),3),true);
                 return true;
             case "gure":
                 for (EntityLivingBase target : targets) {
