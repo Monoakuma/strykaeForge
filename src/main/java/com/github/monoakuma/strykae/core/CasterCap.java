@@ -72,9 +72,9 @@ public class CasterCap  {
             NBTTagList list = (NBTTagList) casterData;
             if (list==null) {
                 casterCap.setMana(0);
-                casterCap.setLives(0);
+                casterCap.setLives(3);
                 casterCap.setIsHuman(true);
-                casterCap.setHygiene(1);
+                casterCap.setHygiene(0);
             }
             else {
                 NBTTagCompound casterDataCompound = list.getCompoundTagAt(0);
@@ -103,7 +103,7 @@ public class CasterCap  {
         }
         public CasterImp() {
             this.mana=0;
-            this.lives=0;
+            this.lives=3;
             this.isHuman=true;
             this.hygiene=0;
         }
