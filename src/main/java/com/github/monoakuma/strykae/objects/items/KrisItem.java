@@ -29,12 +29,13 @@ public class KrisItem extends ItemSword {
         this.addPropertyOverride(new ResourceLocation("playerdistance"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
             @Override
-            public float apply(ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entityLivingBase) {
+            public float apply(@Nonnull ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entityLivingBase) {
                 if (entityLivingBase==null&&!stack.isOnItemFrame()) {
                     return 0.0f;
                 } else {
                     Entity holder = (entityLivingBase!=null) ? entityLivingBase : stack.getItemFrame();
                     if (stack.hasTagCompound()) {
+                        LOGGER.info((float) getDistanceToMarked(stack,holder));
                         return (float) getDistanceToMarked(stack,holder);
                     }
                 }
@@ -45,13 +46,13 @@ public class KrisItem extends ItemSword {
                 if (stack.getTagCompound().hasUniqueId("KrisMark")) {
                     UUID markedUUID = stack.getTagCompound().getUniqueId("KrisMark");
                     if (markedUUID != null) {
-                        EntityPlayer markedEntity =haudr.world.getPlayerEntityByUUID(markedUUID); //literally no clue why this is erroring
+                        EntityPlayer markedEntity =haudr.world.getPlayerEntityByUUID(markedUUID);
                         if (markedEntity != null && markedEntity!=haudr) {
                             return Math.sqrt((markedEntity.posX-haudr.posX)*(markedEntity.posX-haudr.posX)+(markedEntity.posY-haudr.posY)*(markedEntity.posY-haudr.posY)+(markedEntity.posZ-haudr.posZ)*(markedEntity.posZ-haudr.posZ));
                         }
                     }
                 }
-                return 10000.0D;
+                return 9001.0D; //dragon ball z reference
             }
         });
     }

@@ -13,7 +13,7 @@ public class StrykaeCore {
     public static long getDays(World world) {
         return(world.getTotalWorldTime()/24000);
     }
-    public static int getMoonphase(World world) {return moonPower[world.getMoonPhase()];}
+    public static int getMoonphase(World world) {return moonPower[(int) getDays(world)%8];}
     public static void warmBody(EntityPlayer player, int warmth) {TemperatureHelper.getTemperatureData(player).addTemperature(new Temperature(warmth));}
     public static String getGenericName() {
         String[] names = {
@@ -21,5 +21,4 @@ public class StrykaeCore {
         };
         return names[new Random().nextInt(names.length)];
     }
-
 }

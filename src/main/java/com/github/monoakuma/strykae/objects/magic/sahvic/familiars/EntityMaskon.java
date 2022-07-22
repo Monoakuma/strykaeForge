@@ -62,7 +62,6 @@ public class EntityMaskon extends AbstractFamiliar {
         }
     }
 
-
     public class AIEntityMaskonSummon extends EntityAIBase {
         protected int warmup=0;
         protected EntityMaskon maskon;

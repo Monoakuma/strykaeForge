@@ -99,7 +99,7 @@ public class EventHandler {
     @SubscribeEvent
     public void onPlayerDeath(LivingDeathEvent event)
     {
-        if (event.getEntity()instanceof EntityPlayer)
+        if (event.getEntity() instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer) event.getEntity();
             ICasterCap casterCap = getCaster(player);
@@ -126,16 +126,16 @@ public class EventHandler {
             if (casterCap.getIsHuman() && event.player.getEntityWorld().getWorldTime()%24000<12000 && casterCap.getMana()<casterCap.getManaCap() && event.side==Side.SERVER) {casterCap.regenMana();event.player.sendStatusMessage(new TextComponentString(String.format("Mana: %d",casterCap.getMana())),true);}
             else if (!casterCap.getIsHuman() && event.player.getEntityWorld().getWorldTime()%24000>12000 && getMoonphase(event.player.world)!=0 && casterCap.getMana()<casterCap.getManaCap() && event.side==Side.SERVER) {casterCap.regenMana();event.player.sendStatusMessage(new TextComponentString(String.format("Mana: %d",casterCap.getMana())),true);}
 
-            if (casterCap.getHygiene()<-12 && getMoonphase(event.player.world)!=0) {
+            if (casterCap.getHygiene()<-12 && (casterCap.getIsHuman()&& casterCap.getLives()<=3) && getMoonphase(event.player.world)!=0) {
                 event.player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("hunger"),getMoonphase(event.player.world)*20,(int)Math.max(Math.min(getMoonphase(event.player.world)/4,2),0),false,false));
                 if (casterCap.getHygiene()<-18) {
                     event.player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("weakness"),getMoonphase(event.player.world)*20,(int)Math.max(Math.min(getMoonphase(event.player.world)/4,2),0),false,false));
                 }
-                if ( (-new Random().nextInt(30))>casterCap.getHygiene()) {
+                if ( (-new Random().nextInt(30)+12)>casterCap.getHygiene()&&ticks%120==0) {
                     casterCap.infectionEvent(event.player);
                     event.player.world.playSound(event.player, event.player.posX, event.player.posY, event.player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS,1.0f,0.666f);
                 }
-            } else if (casterCap.getHygiene()>12) {
+            } else if (casterCap.getHygiene()>12 && (casterCap.getIsHuman())) {
                 event.player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("haste"),40,0,false,false));
                 if (casterCap.getHygiene()>18) {
                     event.player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("jump_boost"),40,0,false,false));

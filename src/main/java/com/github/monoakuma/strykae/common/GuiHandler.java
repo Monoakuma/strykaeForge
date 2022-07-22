@@ -2,6 +2,7 @@ package com.github.monoakuma.strykae.common;
 
 import com.github.monoakuma.strykae.objects.blocks.SigilTableBlock;
 import com.github.monoakuma.strykae.objects.blocks.gui.GuiSigilTable;
+import com.github.monoakuma.strykae.objects.items.SigilItem;
 import com.github.monoakuma.strykae.objects.items.gui.GuiSigilTablet;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -18,6 +19,7 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         if (ID==0) return new SigilTableBlock.ContainerSigilTable(player.inventory,world,new BlockPos(x,y,z));
+        if (ID==1) return new SigilItem.InternalContainer(player.inventory);
         return null;
     }
 
@@ -26,7 +28,7 @@ public class GuiHandler implements IGuiHandler {
     @SideOnly(Side.CLIENT)
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         if (ID==0) return new GuiSigilTable(player.inventory,new BlockPos(x,y,z),world);
-        if (ID==1) return new GuiSigilTablet(player,player.getHeldItemMainhand());
+        if (ID==1) return new GuiSigilTablet(player);
         return null;
     }
 }

@@ -123,9 +123,8 @@ public class EntityAlbtraum extends AbstractFamiliar implements IJumpingMount {
             if (z <= 0.0F) {
                 z *= 0.25F;
             }
-            Strykae.LOGGER.info("ALBTRAUM:"+this.jumpPower+"|"+this.isAirBorne+"|"+this.onGround);
             if (this.jumpPower > 0.0F) {
-                this.motionY += 0.6000000059604645D * (double)this.jumpPower;
+                this.motionY += 1.6000000059604645D * (double)this.jumpPower;
                 if (this.isPotionActive(MobEffects.JUMP_BOOST)) {
                     this.motionY += (double)((this.getActivePotionEffect(MobEffects.JUMP_BOOST).getAmplifier() + 1) * 0.1F);
                 }

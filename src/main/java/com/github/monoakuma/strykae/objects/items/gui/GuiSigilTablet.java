@@ -2,10 +2,14 @@ package com.github.monoakuma.strykae.objects.items.gui;
 
 import com.github.monoakuma.strykae.Strykae;
 import com.github.monoakuma.strykae.network.messages.SigilCarveMessage;
+import com.github.monoakuma.strykae.objects.items.SigilItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,9 +24,10 @@ import static com.github.monoakuma.strykae.Strykae.MOD_ID;
 import static com.github.monoakuma.strykae.Strykae.spellHandler;
 
 @SideOnly(Side.CLIENT)
-public class GuiSigilTablet extends GuiScreen {
+public class GuiSigilTablet extends GuiContainer {
     EntityPlayer carver;
     ItemStack tablet;
+    SigilItem.InternalContainer internal;
     private static final ResourceLocation TEXTURES = new ResourceLocation(MOD_ID,"textures/gui/tablet.png");
     private final ArrayList<String> focusNames = spellHandler.getSpellnameList();
     private final ArrayList<String> specifierNames = new ArrayList<>(Arrays.asList("ia","at","ti","um","on"));
@@ -33,9 +38,11 @@ public class GuiSigilTablet extends GuiScreen {
     private GuiSigilTablet.GuiCycleButton focus;
     private GuiSigilTablet.GuiCycleButton specifier;
     private GuiButton finish;
-    public GuiSigilTablet(EntityPlayer carver, ItemStack tabula_rasa) {
+    public GuiSigilTablet(EntityPlayer carver) {
+        super(new SigilItem.InternalContainer(carver.inventory));
         this.carver=carver;
-        this.tablet=tabula_rasa;
+        this.tablet=this.inventorySlots.getSlot(0).getStack();
+        this.internal=new SigilItem.InternalContainer(carver.inventory);
     }
     @Override
     public void initGui() {
@@ -80,12 +87,18 @@ public class GuiSigilTablet extends GuiScreen {
     }
 
     @Override
+    protected void drawGuiContainerBackgroundLayer(float v, int i, int i1) {
+
+    }
+
+    @Override
     protected void actionPerformed(@Nonnull GuiButton button) throws IOException {
         super.actionPerformed(button);
         if (button.id==5) {
             spellHandler.assignSpellNBT(this.tablet,String.format("%d%d%d ",(exag1.getIndex()+1),(exag2.getIndex()+1),(exag3.getIndex()+1)) + focus.displayString + specifier.displayString);
-            Strykae.network.sendToServer(new SigilCarveMessage(this.tablet,String.format("%d%d%d ",(exag1.getIndex()+1),(exag2.getIndex()+1),(exag3.getIndex()+1)) + focus.displayString + specifier.displayString));
-            button.enabled=false;
+            this.internal.carve(String.format("%d%d%d ",(exag1.getIndex()+1),(exag2.getIndex()+1),(exag3.getIndex()+1)) + focus.displayString + specifier.displayString);
+            Strykae.LOGGER.info("sending tablet..."); //I cannot send server messages in GUI because it is Client Only??
+            //Strykae.network.sendToServer(new SigilCarveMessage(this.tablet,String.format("%d%d%d ",(exag1.getIndex()+1),(exag2.getIndex()+1),(exag3.getIndex()+1)) + focus.displayString + specifier.displayString));
             this.mc.displayGuiScreen((GuiScreen)null);
         }
     }

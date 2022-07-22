@@ -134,16 +134,16 @@ public class CasterCap  {
         public void setIsHuman(boolean humanity) {
             isHuman=humanity;
         }
-        public void lowerHygiene() {if (this.hygiene>-30) this.hygiene--;}
-        public void raiseHygiene() {if (this.hygiene<30)this.hygiene++;}
+        public void lowerHygiene() {if (this.hygiene>-30&&this.isHuman) this.hygiene--;}
+        public void raiseHygiene() {if (this.hygiene<30&&this.isHuman)this.hygiene++;}
         public void setHygiene(int hygiene) {this.hygiene = hygiene;}
         public int getHygiene() {return this.hygiene;}
         public void infectionEvent(EntityPlayer infected) {
-            for (EntityPlayer e : infected.getEntityWorld().getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(infected.posX+4, infected.posY+4, infected.posZ+4, infected.posX-4, infected.posY-4, infected.posZ-4)))
+            for (EntityPlayer e : infected.getEntityWorld().getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(infected.posX+3, infected.posY+3, infected.posZ+3, infected.posX-3, infected.posY-3, infected.posZ-3)))
             {
-                if (infected.getDistanceSq(e)<=4) {
+                if (infected.getDistanceSq(e)<=3) {
                     ICasterCap casterCap = getCaster(e);
-                    if (casterCap!=null && e!=infected) {
+                    if (casterCap!=null && e!=infected && casterCap.getHygiene()>-12) {
                         casterCap.lowerHygiene();
                     }
                 }
