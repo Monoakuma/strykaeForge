@@ -8,6 +8,6 @@
     { "predicate": { "playerdistance": 10000.00 }, "model": "strykae:item/kris1" },
     { "predicate": { "playerdistance": 1000.00 }, "model": "strykae:item/kris2" },
     { "predicate": { "playerdistance": 100.00 }, "model": "strykae:item/kris3" },
-    { "predicate": { "playerdistance": 10.00 }, "model": "strykae:item/kris4" }
+    { "predicate": { "playerdistance": 1.00 }, "model": "strykae:item/kris4" }
   ]
 }
