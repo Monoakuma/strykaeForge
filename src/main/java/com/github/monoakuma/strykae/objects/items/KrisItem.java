@@ -23,7 +23,7 @@ import static com.github.monoakuma.strykae.Strykae.*;
 public class KrisItem extends ItemSword {
     public KrisItem() {
         super(ToolMaterial.GOLD);
-        this.setMaxDamage(19);
+        this.setMaxDamage(18);
         this.setMaxStackSize(1);
         this.setCreativeTab(TAB);
         this.addPropertyOverride(new ResourceLocation("playerdistance"), new IItemPropertyGetter() {
@@ -56,7 +56,7 @@ public class KrisItem extends ItemSword {
             }
         });
     }
-    public boolean hitEntity(ItemStack stack, EntityLivingBase entity1, EntityLivingBase entity2) {
+    public boolean hitEntity(ItemStack stack, @Nonnull EntityLivingBase entity1, @Nonnull EntityLivingBase entity2) {
         if (!stack.hasTagCompound()) {
             stack.setTagCompound(new NBTTagCompound());
         }

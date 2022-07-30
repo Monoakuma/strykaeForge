@@ -95,10 +95,11 @@ public class GuiSigilTablet extends GuiContainer {
     protected void actionPerformed(@Nonnull GuiButton button) throws IOException {
         super.actionPerformed(button);
         if (button.id==5) {
-            spellHandler.assignSpellNBT(this.tablet,String.format("%d%d%d ",(exag1.getIndex()+1),(exag2.getIndex()+1),(exag3.getIndex()+1)) + focus.displayString + specifier.displayString);
-            this.internal.carve(String.format("%d%d%d ",(exag1.getIndex()+1),(exag2.getIndex()+1),(exag3.getIndex()+1)) + focus.displayString + specifier.displayString);
+            String spelltext = String.format("%d%d%d ",(exag1.getIndex()+1),(exag2.getIndex()+1),(exag3.getIndex()+1)) + focus.displayString + specifier.displayString;
+            spellHandler.assignSpellNBT(this.tablet,spelltext);
+            this.internal.carve(spelltext);
             Strykae.LOGGER.info("sending tablet..."); //I cannot send server messages in GUI because it is Client Only??
-            //Strykae.network.sendToServer(new SigilCarveMessage(this.tablet,String.format("%d%d%d ",(exag1.getIndex()+1),(exag2.getIndex()+1),(exag3.getIndex()+1)) + focus.displayString + specifier.displayString));
+            Strykae.network.sendToServer(new SigilCarveMessage(this.tablet,spelltext));
             this.mc.displayGuiScreen((GuiScreen)null);
         }
     }

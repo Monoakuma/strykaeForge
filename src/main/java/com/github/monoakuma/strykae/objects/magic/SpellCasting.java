@@ -71,7 +71,7 @@ public class SpellCasting {
             new Spell(30, "taut"), //plague //ENTITIES //DONE
             new Spell(13, "trau"), //albtraum familiar //ENTITY FAMILIAR //DONE
             new Spell(22, "mask"), //zombie familiar //ENTITY FAMILIAR //DONE
-            new Spell(12, "ksam") //take control of an undead and turn it into your familiar //ENTITIES FAMILIAR
+            new Spell(12, "ksam") //take control of an undead and turn it into your familiar //ENTITIES FAMILIAR //DONE
     ));
     private final ArrayList<String> specifierNames = new ArrayList<>(Arrays.asList("ia","at","ti","um","on"));
     public final PotionSpell nullSpell = new PotionSpell(999,"null",Potion.getPotionFromResourceLocation("luck"));

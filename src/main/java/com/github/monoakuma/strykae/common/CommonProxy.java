@@ -29,7 +29,7 @@ public class CommonProxy
         Strykae.network = NetworkRegistry.INSTANCE.newSimpleChannel(MOD_ID);
         Strykae.network.registerMessage(CasterCapSyncMessage.Handler.class,CasterCapSyncMessage.class,0, Side.CLIENT);
         Strykae.network.registerMessage(ShowSigilGUIMessage.Handler.class,ShowSigilGUIMessage.class,1, Side.CLIENT);
-        Strykae.network.registerMessage(SigilCarveMessage.Handler.class,SigilCarveMessage.class,2, Side.CLIENT);
+        Strykae.network.registerMessage(SigilCarveMessage.Handler.class,SigilCarveMessage.class,2, Side.SERVER);
         //a server side-event to inscribe Sigils from Sigil Tablet GUI
     }
 

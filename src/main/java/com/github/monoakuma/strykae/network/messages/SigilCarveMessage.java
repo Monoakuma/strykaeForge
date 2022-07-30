@@ -42,9 +42,10 @@ public class SigilCarveMessage implements IMessage {
     public static class Handler implements IMessageHandler<SigilCarveMessage,IMessage> {
         @Override
         public IMessage onMessage(SigilCarveMessage message, MessageContext ctx) {
+            LOGGER.info("carving at:"+ctx.side.name());
             LOGGER.info("carving 0");
             NetworkHelper.getThreadListener(ctx).addScheduledTask(() -> {
-                ItemStack tablet = message.tablet;
+                ItemStack tablet = NetworkHelper.getSidedPlayer(ctx).getHeldItemMainhand();
                 LOGGER.info("carving 1");
                 if (!tablet.isEmpty()) {
                     spellHandler.assignSpellNBT(tablet, message.spelltext);
